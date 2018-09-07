@@ -31,8 +31,8 @@ function showProducts() {
     
     
 
-		console.log("All Products");
-    console.log('...................\n');
+		console.log("Welcome to Petahs! You want THICC products? We got em! See below.");
+    
     
     //Looping through all the items in my DB
 
@@ -42,7 +42,7 @@ function showProducts() {
 			allProducts += 'Item ID: ' + data[i].item_id + '  //  ';
 			allProducts += 'Product: ' + data[i].product_name + '  //  ';
 			allProducts += 'Department: ' + data[i].department_name + '  //  ';
-      allProducts += 'Price: ' + data[i].product_price + '//';
+      allProducts += 'Price: ' + data[i].product_price + ' // ';
       allProducts += 'Stock: ' + data[i].product_stock + '\n';
 
 			console.log(allProducts);
@@ -97,7 +97,7 @@ function makeAPurchase(){
 
 					// If the quantity requested by the user is in stock
 				if (quantity <= productData.product_stock) {
-					console.log('Awesome let\'\s place your order!');
+					// console.log('Awesome let\'\s place your order!');
 
 					// making a query to update DB
 					var updateQueryStr = 'UPDATE products SET product_stock = ' + (productData.product_stock - quantity) + ' WHERE item_id = ' + item;
@@ -107,15 +107,15 @@ function makeAPurchase(){
 					connection.query(updateQueryStr, function(err, data) {
 						if (err) throw err;
 
-						console.log('Your order has been placed! Your total cost is' + productData.product_price * quantity + 'Thanks!');
+						console.log('Your order has been placed! Your total cost is ' + productData.product_price * quantity + ' Thanks!');
 						
 
 						// End the database connection
 						connection.end();
 					})
 				} else {
-					console.log('Sorry, there is not enough product in stock, your order can not be placed as is.');
-					console.log("\n---------------------------------------------------------------------\n");
+					console.log('Sorry, there is not enough product in stock, we cannot place your order! Buy something else though!');
+					
 
 					showProducts();
 				}
